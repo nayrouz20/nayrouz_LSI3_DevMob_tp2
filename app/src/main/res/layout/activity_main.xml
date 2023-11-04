@@ -17,13 +17,15 @@
         android:layout_height="91dp"
         android:layout_marginTop="12dp"
         android:background="@color/blue"
+        android:fontFamily="@font/playfair_display_sc"
         android:gravity="center"
         android:text="Mesure de Niveau \n de glycémie"
         android:textColor="#000000"
-        android:textStyle="bold"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
     <TextView
+        android:id="@+id/age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="90dp"
@@ -35,7 +37,7 @@
     <!--la barre de défilement (composant d'interface)-->
 
     <SeekBar
-        android:id="@+id/sbAge"
+        android:id="@+id/sbage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
@@ -52,6 +54,7 @@
         android:background="@drawable/line_shape" />
 
     <TextView
+        android:id="@+id/trResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -69,7 +72,7 @@
         android:orientation="horizontal">
 
         <RadioButton
-            android:id="@+id/rbtOui"
+            android:id="@+id/rboui"
             android:layout_width="3dp"
             android:layout_height="48dp"
             android:layout_weight="1"
@@ -79,7 +82,7 @@
             android:textSize="20sp" />
 
         <RadioButton
-            android:id="@+id/rbtNon"
+            android:id="@+id/rbnon"
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
@@ -92,7 +95,7 @@
     en ajoutant un indice(hint) et le type entré sera un nombre décimal-->
 
     <EditText
-        android:id="@+id/etGlyemie"
+        android:id="@+id/vm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -104,7 +107,7 @@
 MainActivity.java -->
 
     <Button
-        android:id="@+id/btnConsulter"
+        android:id="@+id/btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -117,7 +120,7 @@ MainActivity.java -->
 
 
     <TextView
-        android:id="@+id/tvResultat"
+        android:id="@+id/res"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"

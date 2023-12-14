@@ -1,7 +1,9 @@
-package com.example.weslati_nayrouz_tp1;
+package com.example.weslati_nayrouz_tp1.view;
 
+import static android.os.Build.VERSION_CODES.R;
+
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +16,9 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.weslati_nayrouz_tp1.R;
+import com.example.weslati_nayrouz_tp1.controller.Controller;
+
 public class MainActivity extends AppCompatActivity {
 
     private TextView age=null,res=null;
@@ -24,8 +29,10 @@ public class MainActivity extends AppCompatActivity {
     private RadioButton rboui=null,rbnon=null;
     private EditText vm=null;
     private Button btn= null;
-    private boolean jéuner;
+    private boolean jeuner;
+    private final int REQUEST_CODE = 1;
 
+    Controller controller = Controller.getInstance();
     @Override
     //public void main
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         // rbGrp=(RadioGroup) findViewById(R.id.rbGrp);
         rbnon=(RadioButton)findViewById(R.id.rbnon);
         rboui=(RadioButton)findViewById(R.id.rboui);
-        res= (TextView) findViewById(R.id.res);
+        res= (TextView) findViewById(R.id.trResult);
     }
     public void calculer(View v){
 
@@ -110,12 +117,25 @@ public class MainActivity extends AppCompatActivity {
                         res.setText("Niveau de glycemie est trop elevée");
                     }
                 }
+
             } else if (vM < 10.5) {
                 res.setText("Niveau de glycemmie est normale");
             }else {
                 res.setText("Niveau de glycemie est elevée");
             }
+            // useraction view vers controller 2/2
+            controller.createPt(age, (float) vM, rboui.isChecked());
+            //notify controller vers view 2/2
+
+            Intent intent = new Intent(MainActivity.this, ConsultActivity.class);
+            intent.putExtra("result",Controller.getInstance().getResponse());
+            startActivityForResult(intent, REQUEST_CODE);
         }
     }
-
+    protected void onActiviyResult(int requestCode, int resultCode, @Nullable Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == REQUEST_CODE)
+            if(resultCode == RESULT_CANCELED)
+                Toast.makeText(MainActivity.this, "Erreur", Toast.LENGTH_SHORT).show();
+    }
 }

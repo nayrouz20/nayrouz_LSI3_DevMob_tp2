@@ -119,14 +119,5 @@ MainActivity.java -->
         android:textSize="18sp" />
 
 
-    <TextView
-        android:id="@+id/res"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:text="..."
-        android:textSize="100dp"
-        android:textStyle="bold"
 
-        />
 </LinearLayout>
